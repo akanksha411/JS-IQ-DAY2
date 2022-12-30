@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-DAY2</title>
+</head>
+<style>
+  h2{
+        text-decoration: underline;
+        color: rgb(163, 75, 12);
+        
+    }
+    h3{
+        font-size: 19px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      color: darkblue;
+    }
+    pre{
+      font-size: 18px;
+     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+
+    }
+    </style>
+<body>
+    <h2>JS Interview Preparation Day-2</h2>
+    <h3>1. What is creation phase and execution phase?</h3>
+    <pre>
+Ans--> In JavaScript, the execution of a script or function can be divided into two phases: the creation phase and the execution phase.
+                    Creation Phase-> During the creation phase, the interpreter processes the function or script and sets up the environment in which it will execute. 
+                                                    This includes creating the global execution context, declaring variables and functions, and hoisting declarations made with var.  
+                    Execution Phase --> During the execution phase, the interpreter executes the code line by line, starting at the top of the script or function and working its way down.                                     
+    </pre>
+    <h3>2. What are objects in javascript?</h3>
+    <pre>
+Ans-->  In JavaScript, an object is a collection of properties, each with a key-value pair. 
+                    Example:
+                        const student={
+                            name:'MANSI'
+                            age:22
+                        }
+    </pre>
+    <h3>3. What are function constructors?</h3>
+    <pre>
+Ans--> A function constructor is a function that is used to create and initialize objects.  
+                    Example:
+                    function Person(name, age) {
+                        this.name = name;
+                        this.age = age;
+                        this.speak = function() {
+                          console.log('Hello, my name is ' + this.name);
+                        }
+                    }
+                    const person1 = new Person('RAHUL', 22);
+                    const person2 = new Person('DEV', 25);
+                    
+                    console.log(person1.name); // Output: 'John'
+                    console.log(person2.age); // Output: 25
+                    
+                    person1.speak(); // Output: 'Hello, my name is John'
+                    person2.speak(); // Output: 'Hello, my name is Jane'
+    </pre>
+    <h3>4.What are callbacks? </h3>
+    <pre>
+Ans-->  A callback is a function that is passed as an argument to another function and waits for another function to execute. After that callback function will execute.  
+                    Example:
+                    function fun1(callback){
+                        setTimeout(()=>{
+                            console.log("executes first")
+                            callback();
+                        },2000)
+                    }
+                    function callback(){
+                        console.log("I am callback")
+                    }
+                    fun1(callback);
+    </pre>
+    <h3>5. Explain prototypes</h3>
+    <pre>
+Ans-->  Prototype is an object that is associated with every function and object, used to extend the behaviour and properties of functions and objects . 
+                Example:
+                function Person(name, age) {
+                    this.name = name;
+                    this.age = age;
+                  }
+                  
+                  Person.prototype.sayHello = function() {
+                    console.log('Hello, my name is ' + this.name);
+                  }
+                  
+                  const person1 = new Person('John', 30);
+                  const person2 = new Person('Jane', 25);
+                  
+                  person1.sayHello();  // Output: 'Hello, my name is John'
+                  person2.sayHello();  // Output: 'Hello, my name is Jane'
+                  console.log(`The name of the person1 is:-> ${person1.name}`)
+    </pre>
+    <h3>6.What is prototype chain</h3>
+    <pre>
+Ans--> Prototype chain is a chain of prototypes that is used to access properties and methods of an object. 
+            The prototype object forming a prototype chain and ends when we reach a prototype that has null for its own prototype.  
+            Example:
+            const animal = {
+                makeSound: function() {
+                  console.log('Some animal sound');
+                }
+            }; 
+            const dog = {
+                bark: function() {
+                  console.log('Woof woof!');
+                }
+            };
+            dog.__proto__ = animal;  // Set the prototype of the dog object to the animal object
+            dog.makeSound();  // Output: 'Some animal sound'
+            dog.bark();  // Output: 'Woof woof!'      
+    </pre>
+    <h3>7. Give an example of inheritance using function constructor</h3>
+    <pre>
+Ans--> function Person(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  Person.prototype.sayHello = function() {
+    console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+  };
+  const person1 = new Person('John', 30);
+  person1.sayHello();  // Output: "Hello, my name is John and I am 30 years old."
+  
+  
+  function Student(name, age, major) {
+    Person.call(this, name, age);
+    this.major = major;
+  }
+  Student.prototype = Object.create(Person.prototype);
+  Student.prototype.constructor = Student;
+  
+  Student.prototype.sayHello = function() {
+    console.log(`Hello, my name is ${this.name} and I am studying ${this.major}.`);
+  };
+  
+  const student1 = new Student('RAHUL', 20, 'Computer Science');
+  student1.sayHello();      
+    </pre>
+    <script src="main.js"></script>
+</body>
+</html>
